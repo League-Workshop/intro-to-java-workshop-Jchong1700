@@ -35,7 +35,9 @@ String question4 = JOptionPane.showInputDialog("Who is the best Teenage Mutant N
 		if (question4.equalsIgnoreCase("Raphael")) {score = score + 1; }
 		else {JOptionPane.showMessageDialog(null, "Incorrect");}
 		
-		JOptionPane.showMessageDialog(null, "Your final score is " + score );
+		
+		if (score==4) {JOptionPane.showMessageDialog(null, "100% Correct! Nice work!");}
+		else {JOptionPane.showMessageDialog(null, "Your final score is " + score );}
 		
 	}
 }

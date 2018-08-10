@@ -16,7 +16,7 @@ public class DragonFight {
 		int playerHealth = 100;
 		// 3. Create a variable called "dragonHealth" to store the dragon's health (set
 		// it equal to 100)
-		int dragonHealth = 100;
+		int dragonHealth = 250;
 		// 4. Create a variable to hold the damage the player's attack does each round
 		int dragonDamage = 0;
 		// 5. Create a variable to hold the damage the dragon's attack does each round
@@ -47,9 +47,8 @@ public class DragonFight {
 				}
 				dragonHealth -= dragonDamage;
 
-				
-				playerDamage = new Random().nextInt(36);
-				
+				playerDamage = new Random().nextInt(46);
+
 				playerHealth -= playerDamage;
 
 				JOptionPane.showMessageDialog(null,
@@ -63,45 +62,80 @@ public class DragonFight {
 			if (choiceBoard.equalsIgnoreCase("Item")) {
 				String item = JOptionPane.showInputDialog("Items \n <Health Potion : " + HealthPotion);
 				if (item.equalsIgnoreCase("Health Potion")) {
+					if (playerHealth<100) {
 					if (HealthPotion > 0) {
 						playerHealth += 20;
-						HealthPotion -= 1; 	JOptionPane.showMessageDialog(null,
+						HealthPotion -= 1;
+						JOptionPane.showMessageDialog(null,"You used a Health Potion! Restored 20 health points!");
+						JOptionPane.showMessageDialog(null,
 								"Dragon's Health " + dragonHealth + "\n Player's Health " + playerHealth);
 						if (HealthPotion == 0) {
 							JOptionPane.showMessageDialog(null, "Out of Health Potions!");
-						}
-
-						if (playerHealth == 0) {
-							JOptionPane.showMessageDialog(null, "The dragon defeats you! You lose!");
-						}
-						if (playerHealth < 0) {
-							JOptionPane.showMessageDialog(null, "The dragon defeats you! You lose!");
-						}
-						if (choiceBoard.equalsIgnoreCase("Magic")) {
-							String magic = JOptionPane.showInputDialog("Choose a Spell! \n <Fireball Tome: 3 "
-									+ "\n <Lightning Tome: 3");
-							if (lightning>0)
-						}
-						
-						
-						
-						
-						if (dragonHealth == 0) {
-							JOptionPane.showMessageDialog(null, "You slay the dragon and take the gold! You win!");
-						}
-						if (dragonHealth < 0) {
-							JOptionPane.showMessageDialog(null, "You slay the dragon and take the gold! You win!");
-						}
-					
-						else {
-							if (playerHealth == 0 && dragonHealth == 0) {
-								JOptionPane.showMessageDialog(null,
-										"You both are critically injured! \n Too hurt to pillage for gold you perish along with the dragon in the dragon's cave ");
-							}
-						}
+						}}
 					}
 				}
 			}
+
+			if (choiceBoard.equalsIgnoreCase("Magic")) {
+				String magic = JOptionPane
+						.showInputDialog("Choose a Spell! \n <Fireball: 3 " + "\n <Lightning: " + lightning);
+				if (magic.equalsIgnoreCase("Lightning"))
+					;
+				{
+					if (lightning > 0) {
+						dragonDamage = new Random().nextInt(15) + 11;
+					}
+					dragonHealth -= dragonDamage;
+					lightning -= 1;
+					playerDamage = new Random().nextInt(46);
+
+					playerHealth -= playerDamage;
+
+					JOptionPane.showMessageDialog(null,
+							"Dragon's Health " + dragonHealth + "\n Player's Health " + playerHealth);
+					if (lightning == 0) {
+						JOptionPane.showMessageDialog(null, "Out of Lightning Spell!");
+					}
+				}
+
+				if (magic.equalsIgnoreCase("Fireball")) {
+					if (fireball > 0) {
+						dragonDamage = new Random().nextInt(6) + 40;
+					}
+					dragonHealth -= dragonDamage;
+					fireball -= 1;
+					playerDamage = new Random().nextInt(46);
+
+					playerHealth -= playerDamage;
+
+					JOptionPane.showMessageDialog(null,
+							"Dragon's Health " + dragonHealth + "\n Player's Health " + playerHealth);
+					if (fireball == 0) {
+						JOptionPane.showMessageDialog(null, "Out of Fireball Spell");
+					}
+
+				}
+			}
+
+			if (playerHealth == 0) {
+				JOptionPane.showMessageDialog(null, "The dragon defeats you! You lose!");
+			}
+			if (playerHealth < 0) {
+				JOptionPane.showMessageDialog(null, "The dragon defeats you! You lose!");
+			}
+			if (dragonHealth == 0) {
+				JOptionPane.showMessageDialog(null, "You slay the dragon and take the gold! You win!");
+			}
+			if (dragonHealth < 0) {
+				JOptionPane.showMessageDialog(null, "You slay the dragon and take the gold! You win!");
+			} else {
+				if (playerHealth == 0 && dragonHealth == 0) {
+					JOptionPane.showMessageDialog(null,
+							"You both are critically injured! \n Too hurt to pillage for gold you perish along with the dragon in the dragon's cave ");
+				}
+
+			}
+
 		}
 	}
 }
